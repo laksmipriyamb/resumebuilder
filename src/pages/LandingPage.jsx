@@ -57,7 +57,7 @@ function LandingPage() {
         <h3 className='fw-bold text-center mb-5'>Testimony</h3>
         <div className="row container">
           <div className="col-md-5">
-            <h4 className='my-5'>Trusted by professionals worldwide.
+            <h4 className='my-5 fw-bold'>Trusted by professionals worldwide.
             </h4>
             <p className='fs-5'>At LiveCareer, we don't just help you create résumés — we help you land the job. Whether you're a seasoned professional or just starting out, our tools are designed to get results.
             </p><br />
