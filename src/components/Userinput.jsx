@@ -6,6 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
+import { IoMdClose } from "react-icons/io";
 
 
 const steps = ['Basic Informations', 'Contact Details', 'Education Details','Work Experience','Skills & Certifications','Review & Submit'];
@@ -14,6 +15,7 @@ const steps = ['Basic Informations', 'Contact Details', 'Education Details','Wor
 function Userinput() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const skillSuggestionarray = ['NODE JS','MONGODB','REACT','EXPRESS JS','ANGULAR','LEADERSHIP','COMMUNICATION','DECISION MAKING','PROBLEM SOLVING']
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -106,11 +108,30 @@ function Userinput() {
         case 4 : return(
             <div>
                 <h3>Skills</h3>
+                <div className="d-flex justify-content-center align-items-center p-3 w-100">
+                  <input type="text" placeholder='Add skills' className='w-100 ps-1 py-2 border border-none' />
+                  <Button variant='text'>ADD</Button>
+                </div>
+                <h5>Suggestions</h5>
+                <div className="d-flex flex-wrap justify-content-between my-3">
+                  {
+                    skillSuggestionarray.map((item,index)=>(
+                      <Button key={index} variant='outlined' className='m-2'>{item}</Button>
+                    ))
+                  }
+                </div>
+                <h5>Added skills:</h5>
+                <div className="d-flex flex-wrap justify-content-between my-3">
+                  <Button variant='contained' className='m-1'>NODE JS <IoMdClose className='ms-2' /></Button>
+                </div>
             </div>
         )
         case 5 : return(
             <div>
                 <h3> Summary</h3>
+                <div className="p-3 row">
+                  <TextField id="standard-basic-summary" label="Write a short summary of yourself" variant="standard" multiline rows={7} defaultValue={'Passionate and detail-oriented MERN Stack Developer with strong expertise in developing dynamic, user-friendly, and data-driven web applications. Proficient in JavaScript (ES6+), React.js, Node.js, Express.js, and MongoDB. '}/>
+                </div>
             </div>
         )
     }
