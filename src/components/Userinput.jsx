@@ -34,10 +34,13 @@ function Userinput() {
     company:"",
     cLocation:"",
     duration:"",
-    userSkills:"",
+    userSkills:[],
     summary:""
 
   })
+  //refernece o skill input tag
+const skillRef = React.useRef()
+
   console.log(resumeDetails);
   
 
@@ -82,6 +85,20 @@ function Userinput() {
   const handleReset = () => {
     setActiveStep(0);
   };
+  //tos add skill that inputed in the text field
+  const addskill = (skill)=>{
+    if(resumeDetails.userSkills.includes(skill)){
+      alert("The given skill already added,Please add another one!!!")
+    }else{
+      setResumeDetails({...resumeDetails,userSkills:[...resumeDetails.userSkills,skill]})
+      //to clear text field
+      skillRef.current.value=""
+    }
+  }
+
+  const removeSkills=(skill)=>{
+    setResumeDetails({...resumeDetails,userSkills:resumeDetails.userSkills.filter(item=>item!=skill)})
+  }
 
   const renderSteps = (stepCount)=>{
     switch(stepCount){
@@ -133,20 +150,28 @@ function Userinput() {
             <div>
                 <h3>Skills</h3>
                 <div className="d-flex justify-content-center align-items-center p-3 w-100">
-                  <input type="text" placeholder='Add skills' className='w-100 ps-1 py-2 border border-none' />
-                  <Button variant='text'>ADD</Button>
+                  <input ref={skillRef} type="text" placeholder='Add skills' className='w-100 ps-1 py-2 border border-none' />
+                  <Button onClick={()=>addskill(skillRef.current.value)} variant='text'>ADD</Button>
                 </div>
                 <h5>Suggestions</h5>
                 <div className="d-flex flex-wrap justify-content-between my-3">
                   {
                     skillSuggestionarray.map((item,index)=>(
-                      <Button key={index} variant='outlined' className='m-2'>{item}</Button>
+                      <Button onClick={()=>addskill(item)} key={index} variant='outlined' className='m-2'>{item}</Button>
                     ))
                   }
                 </div>
                 <h5>Added skills:</h5>
                 <div className="d-flex flex-wrap justify-content-between my-3">
-                  <Button variant='contained' className='m-1'>NODE JS <IoMdClose className='ms-2' /></Button>
+                  {
+                    resumeDetails.userSkills.length>0?
+                      resumeDetails.userSkills?.map((skill,index)=>(
+                        <Button key={index} variant='contained' className='m-1'>{skill}<IoMdClose onClick={()=>removeSkills(skill)} className='ms-2' /></Button>
+                      ))
+                      :
+                      <p className='fw-bolder'>No skills are added yet</p>
+                  }
+                  
                 </div>
             </div>
         )
