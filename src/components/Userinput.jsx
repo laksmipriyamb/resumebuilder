@@ -12,32 +12,11 @@ import { IoMdClose } from "react-icons/io";
 const steps = ['Basic Informations', 'Contact Details', 'Education Details','Work Experience','Skills & Certifications','Review & Submit'];
 
 
-function Userinput() {
+function Userinput({resumeDetails,setResumeDetails}) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const skillSuggestionarray = ['NODE JS','MONGODB','REACT','EXPRESS JS','ANGULAR','LEADERSHIP','COMMUNICATION','DECISION MAKING','PROBLEM SOLVING']
-  // create state for storing resume details
-  const [resumeDetails,setResumeDetails] = React.useState({
-    username:"",
-    jobTitle:"",
-    location:"",
-    email:"",
-    mobile:"",
-    github:"",
-    linkedin:"",
-    portfolio:"",
-    course:"",
-    college:"",
-    university:"",
-    passoutyear:"",
-    jobType:"",
-    company:"",
-    cLocation:"",
-    duration:"",
-    userSkills:[],
-    summary:""
-
-  })
+  
   //refernece o skill input tag
 const skillRef = React.useRef()
 
