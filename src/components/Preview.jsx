@@ -14,7 +14,7 @@ function Preview({resumeDetails}) {
       </p>
       <Divider sx={{ fontSize: '20px', fontWeight: '600' }}>Summary</Divider>
       <p style={{ textAlign: 'justify' }}>
-        {resumeDetails.summary}
+        {/* {resumeDetails.summary} */}
       </p>
       <Divider sx={{ fontSize: '20px', fontWeight: '600' }}>Education</Divider>
       <h6 className="mt-2">{resumeDetails?.course}</h6>
