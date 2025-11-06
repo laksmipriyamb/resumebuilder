@@ -5,7 +5,10 @@ import ServerURL from "./ServerURL"
 export const addResumeAPI = async (resume)=>{
     return await commonAPI(`${ServerURL}/resumes`,"POST",resume)
 }
-//get resume api
+//get resume api - called from viewResume,when page load()
+export const getResumeAPI = async (id)=>{
+    return await commonAPI(`${ServerURL}/resumes/${id}`,"GET",{})
+}
 //update resume api
 //add history api
 //get history api
