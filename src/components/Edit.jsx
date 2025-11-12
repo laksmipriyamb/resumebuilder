@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import { IoMdClose } from "react-icons/io";
+import { updateResumeAPI } from '../services/allAPI';
 
 
 
@@ -42,6 +43,30 @@ function Edit({ resumeDetails, setResumeDetails }) {
 
   const removeSkills=(skill)=>{
     setResumeDetails({...resumeDetails,userSkills:resumeDetails.userSkills.filter(item=>item!=skill)})
+  }
+
+  const handleResumeUpdate = async ()=>{
+    const {id,username,jobTitle,location} = resumeDetails
+    if(!username && !jobTitle && !location){
+        alert("Please fill the form Completely...")
+    }else{
+        //api
+        console.log("API call");
+        try{
+            const result = await updateResumeAPI(id,resumeDetails)
+        console.log(result);
+        if(result.status==200){
+            alert("Resume updated successfully!!!")
+            handleClose()
+        }
+        }catch(err){
+            console.log(err);
+            
+        }
+        
+        
+    }
+    
   }
 
     return (
@@ -127,7 +152,7 @@ function Edit({ resumeDetails, setResumeDetails }) {
                                 <TextField onChange={e => setResumeDetails({ ...resumeDetails, summary: e.target.value })} id="standard-basic-summary" label="Write a short summary of yourself" variant="standard" multiline rows={7} defaultValue={'Passionate and detail-oriented MERN Stack Developer with strong expertise in developing dynamic, user-friendly, and data-driven web applications. Proficient in JavaScript (ES6+), React.js, Node.js, Express.js, and MongoDB. '} />
                             </div>
                         </div>
-                        <div className='text-center'>
+                        <div onClick={handleResumeUpdate} className='text-center'>
                             <button className="btn btn-warning text-white">Update</button>
                             </div>
                     </Box>

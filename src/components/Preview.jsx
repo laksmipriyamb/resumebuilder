@@ -3,7 +3,7 @@ import React from 'react'
 
 function Preview({resumeDetails}) {
   return (
-    <div style={{ margin: '70px' }} className='shadow p-5 w-100 rounded text-center'>
+    <div style={{ margin: '70px' }} className='shadow w-100 rounded text-center p-5 me-5'>
       <h3>{resumeDetails?.username}</h3>
       <h4>{resumeDetails?.jobTitle}</h4>
       <h6><span className='mx-2'>{resumeDetails?.location}</span>|<span className='mx-2'>{resumeDetails?.email}</span>|<span className='mx-2'>{resumeDetails?.mobile}</span></h6>
@@ -13,7 +13,7 @@ function Preview({resumeDetails}) {
         <a href={resumeDetails?.portfolio} target='_blank' className='mx-1'>PORTFOLIO</a>
       </p>
       <Divider sx={{ fontSize: '20px', fontWeight: '600' }}>Summary</Divider>
-      <p style={{ textAlign: 'justify' }}>
+      <p style={{ textAlign: 'justify',paddingRight:'50px' }}>
         {resumeDetails?.summary}
       </p>
       <Divider sx={{ fontSize: '20px', fontWeight: '600' }}>Education</Divider>
@@ -23,7 +23,7 @@ function Preview({resumeDetails}) {
       <h6 className="mt-2">{resumeDetails?.jobType}</h6>
       <p><span className='mx-2'>{resumeDetails?.company}</span>|<span className='mx-2'>{resumeDetails?.cLocation}</span>|<span className='mx-2'>{resumeDetails?.duration}</span></p>
       <Divider sx={{ fontSize: '20px', fontWeight: '600' }}>Skills</Divider>
-      <div className="d-flex flex-wrap justify-content-between my-3">
+      <div className="d-flex flex-wrap justify-content-between my-3 pe-5">
         {
           resumeDetails?.userSkills?.map((item,index)=>(
             <Button key={index} variant='contained' className='m-1'>{item}</Button>
